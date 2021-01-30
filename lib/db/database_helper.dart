@@ -4,14 +4,14 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
-  static final _databaseName = "MyDatabase.db";
+  static final _databaseName = "SqfliteUsage.db";
   static final _databaseVersion = 1;
 
-  static final table = 'my_table';
+  static final table = 'persons';
 
-  static final columnId = '_id';
+  static final columnId = 'id';
   static final columnName = 'name';
-  static final columnAge = 'age';
+  static final columnBio = 'bio';
 
   // make this a singleton class
   DatabaseHelper._privateConstructor();
@@ -38,9 +38,9 @@ class DatabaseHelper {
   Future _onCreate(Database db, int version) async {
     await db.execute('''
           CREATE TABLE $table (
-            $columnId INTEGER PRIMARY KEY,
+            $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
             $columnName TEXT NOT NULL,
-            $columnAge INTEGER NOT NULL
+            $columnBio TEXT NOT NULL
           )
           ''');
   }
@@ -83,5 +83,11 @@ class DatabaseHelper {
   Future<int> delete(int id) async {
     Database db = await instance.database;
     return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
+  }
+
+  // Deletes all rows
+  Future<int> deleteAllRows() async {
+    Database db = await instance.database;
+    return await db.delete(table);
   }
 }
