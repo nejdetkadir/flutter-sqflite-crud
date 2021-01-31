@@ -21,15 +21,15 @@ class Person {
   // map funcs
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
-    map["id"] = this.id;
-    map["name"] = this.name;
-    map["bio"] = this.bio;
+    map["id"] = _id;
+    map["name"] = _name;
+    map["bio"] = _bio;
     return map;
   }
 
   Person.fromMap(Map<String, dynamic> map) {
-    this.id = map["id"];
-    this.name = map["name"];
-    this.bio = map["bio"];
+    _id = map["id"];
+    _name = map["name"];
+    _bio = map["bio"];
   }
 }
