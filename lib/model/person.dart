@@ -5,15 +5,15 @@ class Person {
 
   int get id => _id;
 
-  set id(int value) => value;
+  set id(int value) => _id = value;
 
   String get name => _name;
 
-  set name(String value) => value;
+  set name(String value) => _name = value;
 
   String get bio => _bio;
 
-  set bio(String value) => value;
+  set bio(String value) => _bio = value;
 
   Person(this._name, this._bio);
   Person.withID(this._id, this._name, this._bio);
